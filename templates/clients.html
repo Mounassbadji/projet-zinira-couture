@@ -1,0 +1,25 @@
+<!-- Ajoutez ceci dans la section appropriée de votre fichier index.html -->
+<form method="POST" action="{{ url_for('add_client') }}">
+    <input type="text" name="name" placeholder="Nom" required>
+    <select name="gender">
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+    </select>
+    <input type="text" name="phone" placeholder="Téléphone">
+    <input type="text" name="address" placeholder="Adresse">
+    <button type="submit">Ajouter Client</button>
+</form>
+
+<!-- Affichez les clients dans votre tableau -->
+{% for client in clients %}
+<tr>
+    <td>{{ client.id }}</td>
+    <td>{{ client.name }}</td>
+    <td>{{ client.gender }}</td>
+    <td>{{ client.phone }}</td>
+    <td>{{ client.address }}</td>
+    <td>
+        <a href="{{ url_for('delete_client', client_id=client.id) }}">Supprimer</a>
+    </td>
+</tr>
+{% endfor %}
